@@ -23,10 +23,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "functions": {
-    "api/reviews.js": {
-      "maxDuration": 10
-    }
-  }
+  ]
 } 
