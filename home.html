@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Butay Parlor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      color: #333;
+      background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') no-repeat center center fixed;
+      background-size: cover;
+    }
+    header, footer {
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      backdrop-filter: blur(8px);
+      background: rgba(248, 180, 217, 0.85);
+    }
+    .container, .about, .offers, .faq, .booking-form {
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+    }
+    .service-card, .offer-card, .team-card, .testimonial-card {
+      box-shadow: 0 6px 24px 0 rgba(31, 38, 135, 0.15), 0 1.5px 3px 0 rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover, .offer-card:hover, .team-card:hover, .testimonial-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.18), 0 2px 8px 0 rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+    .gallery-grid img {
+      box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.12);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.20);
+      z-index: 2;
+    }
+    .btn {
+      box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.10);
+      transition: background 0.2s, transform 0.18s, box-shadow 0.18s;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 6px 18px 0 rgba(31, 38, 135, 0.15);
+    }
+    header { background: #f8b4d9; color: #fff; padding: 2.5rem 0 1.5rem 0; text-align: center; }
+    nav { margin-top: 1.5rem; }
+    nav a { color: #fff; text-decoration: none; margin: 0 1.5rem; font-weight: 600; font-size: 1.1rem; }
+    nav a:hover { text-decoration: underline; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .hero { text-align: center; padding: 5rem 1rem 3rem 1rem; background: linear-gradient(135deg, #f8b4d9 60%, #fff 100%); color: #fff; }
+    .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
+    .hero p { font-size: 1.5rem; margin-bottom: 2.5rem; }
+    .btn { background: #fff; color: #f8b4d9; border: none; padding: 1.2rem 3rem; border-radius: 30px; font-weight: 600; font-size: 1.2rem; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: #ffe4f3; }
+    section { margin-bottom: 4rem; }
+    h2 { color: #f8b4d9; text-align: center; margin-bottom: 2.5rem; font-size: 2.5rem; }
+    .about { background: #f9f9f9; border-radius: 16px; padding: 2.5rem; font-size: 1.2rem; }
+    .services-list { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; }
+    .service-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 2rem; width: 260px; text-align: center; }
+    .service-card h3 { color: #f8b4d9; margin-bottom: 0.7rem; font-size: 1.3rem; }
+    .service-card .price { color: #333; font-weight: 600; margin-top: 0.5rem; font-size: 1.1rem; }
+    .service-card p { font-size: 1rem; color: #666; }
+    .offers { background: #fff0fa; border-radius: 14px; padding: 2rem; text-align: center; }
+    .offers-list { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .offer-card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 220px; }
+    .offer-card h4 { color: #f8b4d9; margin-bottom: 0.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .gallery-grid img { width: 100%; border-radius: 12px; height: 180px; object-fit: cover; cursor: pointer; transition: transform 0.2s; }
+    .gallery-grid img:hover { transform: scale(1.05); }
+    .team-list { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .team-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 200px; text-align: center; }
+    .team-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; }
+    .team-card h4 { margin: 0.5rem 0 0.2rem 0; color: #f8b4d9; }
+    .team-card p { font-size: 0.95rem; color: #666; }
+    .testimonials-list { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .testimonial-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 320px; text-align: center; }
+    .testimonial-card .stars { color: #ffd700; margin-bottom: 0.5rem; }
+    .testimonial-card p { font-style: italic; color: #555; }
+    .testimonial-card .author { font-weight: 600; color: #f8b4d9; margin-top: 0.7rem; }
+    .faq { background: #f9f9f9; border-radius: 14px; padding: 2rem; }
+    .faq-item { margin-bottom: 1.5rem; }
+    .faq-item h4 { color: #f8b4d9; margin-bottom: 0.3rem; }
+    .faq-item p { color: #555; margin: 0; }
+    .contact-info { text-align: center; font-size: 1.15rem; }
+    .contact-info p { margin: 0.7rem 0; }
+    .contact-info a { color: #f8b4d9; text-decoration: none; font-weight: 600; }
+    .contact-info a:hover { text-decoration: underline; }
+    .booking-form { max-width: 400px; margin: 2rem auto 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem; }
+    .booking-form label { display: block; margin-bottom: 0.5rem; color: #f8b4d9; font-weight: 600; }
+    .booking-form input, .booking-form textarea, .booking-form select { width: 100%; padding: 0.7rem; margin-bottom: 1.2rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+    .booking-form button { background: #f8b4d9; color: #fff; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: background 0.2s; }
+    .booking-form button:hover { background: #e8a4c9; }
+    footer { background: #f8b4d9; color: #fff; text-align: center; padding: 2rem 0 1rem 0; margin-top: 3rem; }
+    .footer-social { margin-top: 1rem; }
+    .footer-social a { color: #fff; margin: 0 0.7rem; font-size: 1.5rem; text-decoration: none; }
+    .footer-social a:hover { color: #ffe4f3; }
+    @media (max-width: 700px) {
+      .container { padding: 1.5rem 0.5rem; }
+      .hero h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.5rem; }
+      .services-list, .offers-list, .team-list, .testimonials-list { flex-direction: column; align-items: center; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.0/remixicon.min.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Butay Parlor</h1>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#offers">Offers</a>
+        <a href="#team">Team</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <h1>Welcome to Butay Parlor</h1>
+    <p>Your beauty, our passion. Experience the best beauty services in town!</p>
+    <a href="#booking" class="btn">Book Appointment</a>
+  </section>
+  <div class="container">
+    <section id="about" class="about">
+      <h2>About Us</h2>
+      <p>Butay Parlor is dedicated to making you look and feel your best. Our experienced team offers a wide range of beauty services in a relaxing and friendly environment. Whether you need a quick touch-up or a full makeover, we are here for you! We use only premium products and the latest techniques to ensure you leave glowing and confident.</p>
+    </section>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services-list">
+        <div class="service-card">
+          <h3>Facial</h3>
+          <p>Rejuvenate your skin with our signature facials.</p>
+          <div class="price">₹499</div>
+        </div>
+        <div class="service-card">
+          <h3>Haircut & Styling</h3>
+          <p>Trendy cuts and styles for every occasion.</p>
+          <div class="price">₹299</div>
+        </div>
+        <div class="service-card">
+          <h3>Manicure & Pedicure</h3>
+          <p>Pamper your hands and feet with our spa treatments.</p>
+          <div class="price">₹199 - ₹399</div>
+        </div>
+        <div class="service-card">
+          <h3>Bridal Makeup</h3>
+          <p>Look stunning on your special day with our bridal packages.</p>
+          <div class="price">₹2999</div>
+        </div>
+        <div class="service-card">
+          <h3>Waxing</h3>
+          <p>Smooth and gentle waxing for all skin types.</p>
+          <div class="price">₹99 - ₹499</div>
+        </div>
+        <div class="service-card">
+          <h3>Hair Color</h3>
+          <p>Vibrant and lasting hair color options.</p>
+          <div class="price">₹799</div>
+        </div>
+        <div class="service-card">
+          <h3>Spa & Massage</h3>
+          <p>Relax and unwind with our soothing massages.</p>
+          <div class="price">₹599</div>
+        </div>
+        <div class="service-card">
+          <h3>Threading</h3>
+          <p>Perfect brows and facial hair removal.</p>
+          <div class="price">₹49</div>
+        </div>
+      </div>
+    </section>
+    <section id="offers" class="offers">
+      <h2>Special Offers</h2>
+      <div class="offers-list">
+        <div class="offer-card">
+          <h4>Bridal Package</h4>
+          <p>Facial, Hair, Makeup, Mehendi<br><b>₹4999</b></p>
+        </div>
+        <div class="offer-card">
+          <h4>Summer Glow</h4>
+          <p>Facial + Manicure + Pedicure<br><b>₹999</b></p>
+        </div>
+        <div class="offer-card">
+          <h4>Hair Color Combo</h4>
+          <p>Haircut + Color + Styling<br><b>₹1299</b></p>
+        </div>
+        <div class="offer-card">
+          <h4>Student Discount</h4>
+          <p>10% off on all services (with ID)</p>
+        </div>
+      </div>
+    </section>
+    <section id="team">
+      <h2>Meet Our Team</h2>
+      <div class="team-list">
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma">
+          <h4>Priya Sharma</h4>
+          <p>Senior Stylist</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Anjali Patel">
+          <h4>Anjali Patel</h4>
+          <p>Makeup Artist</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Ravi Desai">
+          <h4>Ravi Desai</h4>
+          <p>Massage Expert</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sneha Joshi">
+          <h4>Sneha Joshi</h4>
+          <p>Beauty Therapist</p>
+        </div>
+      </div>
+    </section>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Gallery 1">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Gallery 2">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Gallery 3">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Gallery 4">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Gallery 5">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Gallery 6">
+        <img src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=400&q=80" alt="Gallery 7">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Gallery 8">
+      </div>
+    </section>
+    <section id="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonials-list">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p>"Amazing service and friendly staff! I always leave feeling beautiful and refreshed."</p>
+          <div class="author">- Riya Mehta</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p>"The bridal package was perfect for my big day. Highly recommend Butay Parlor!"</p>
+          <div class="author">- Sneha Shah</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p>"Clean, professional, and always on time. My go-to beauty spot!"</p>
+          <div class="author">- Priya Patel</div>
+        </div>
+      </div>
+      <div style="max-width:400px;margin:2.5rem auto 0 auto;background:rgba(255,255,255,0.7);border-radius:12px;box-shadow:0 2px 8px rgba(31,38,135,0.08);padding:2rem;">
+        <h3 style="color:#f8b4d9;text-align:center;margin-bottom:1rem;">Write a Review</h3>
+        <form id="reviewForm">
+          <label for="reviewName" style="color:#f8b4d9;font-weight:600;">Name</label>
+          <input type="text" id="reviewName" name="name" required style="width:100%;padding:0.6rem;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;">
+          <label for="reviewText" style="color:#f8b4d9;font-weight:600;">Review</label>
+          <textarea id="reviewText" name="review" rows="3" required style="width:100%;padding:0.6rem;margin-bottom:1rem;border-radius:6px;border:1px solid #ccc;"></textarea>
+          <label for="reviewRating" style="color:#f8b4d9;font-weight:600;">Rating</label>
+          <select id="reviewRating" name="rating" required style="width:100%;padding:0.6rem;margin-bottom:1.2rem;border-radius:6px;border:1px solid #ccc;">
+            <option value="">Select rating</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+          <button type="submit" class="btn" style="width:100%;">Submit Review</button>
+          <div id="reviewMsg" style="margin-top:1rem;text-align:center;"></div>
+        </form>
+      </div>
+    </section>
+    <section id="faq" class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>Do I need to book an appointment?</h4>
+        <p>Walk-ins are welcome, but we recommend booking in advance for your convenience.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What products do you use?</h4>
+        <p>We use only premium, skin-friendly products from trusted brands.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer bridal packages?</h4>
+        <p>Yes! We have special bridal packages. Please contact us for details.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Is parking available?</h4>
+        <p>Yes, we have convenient parking near our location.</p>
+      </div>
+    </section>
+    <section id="booking">
+      <h2>Book an Appointment</h2>
+      <form class="booking-form" onsubmit="event.preventDefault();alert('Thank you! We will contact you soon.');this.reset();">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="service">Service</label>
+        <select id="service" name="service" required>
+          <option value="">Select a service</option>
+          <option>Facial</option>
+          <option>Haircut & Styling</option>
+          <option>Manicure & Pedicure</option>
+          <option>Bridal Makeup</option>
+          <option>Waxing</option>
+          <option>Hair Color</option>
+          <option>Spa & Massage</option>
+          <option>Threading</option>
+        </select>
+        <label for="message">Message (optional)</label>
+        <textarea id="message" name="message" rows="3"></textarea>
+        <button type="submit">Book Now</button>
+      </form>
+    </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <p><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></p>
+        <p><strong>Address:</strong> 123 Main Street, Your City</p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/911234567890" target="_blank">Chat on WhatsApp</a></p>
+        <p><strong>Email:</strong> <a href="mailto:info@butayparlor.com">info@butayparlor.com</a></p>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <div class="container">
+      <div>&copy; 2024 Butay Parlor. All rights reserved.</div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="ri-instagram-fill"></i></a>
+        <a href="https://wa.me/911234567890" target="_blank" aria-label="WhatsApp"><i class="ri-whatsapp-fill"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Review submission logic
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewMsg = document.getElementById('reviewMsg');
+    if (reviewForm) {
+      reviewForm.onsubmit = async function(e) {
+        e.preventDefault();
+        reviewMsg.textContent = '';
+        const name = document.getElementById('reviewName').value.trim();
+        const review = document.getElementById('reviewText').value.trim();
+        const rating = document.getElementById('reviewRating').value;
+        if (!name || !review || !rating) {
+          reviewMsg.textContent = 'Please fill all fields.';
+          reviewMsg.style.color = '#f44336';
+          return;
+        }
+        try {
+          const res = await fetch('/api/reviews', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, review, rating })
+          });
+          if (res.ok) {
+            reviewMsg.textContent = 'Thank you for your review!';
+            reviewMsg.style.color = '#4CAF50';
+            reviewForm.reset();
+          } else {
+            reviewMsg.textContent = 'Failed to submit review.';
+            reviewMsg.style.color = '#f44336';
+          }
+        } catch {
+          reviewMsg.textContent = 'Network error.';
+          reviewMsg.style.color = '#f44336';
+        }
+      };
+    }
+  </script>
+</body>
+</html>
